@@ -8,29 +8,39 @@ import QRCode from 'qrcode';
   styleUrls: ['./generar-qr.page.scss'],
 })
 export class GenerarQrPage implements OnInit {
-  profesor: string = 'profesor123'; // Por defecto
+  profesor: string = 'profesor123';
 
   constructor() {}
 
   ngOnInit() {
-    // Recupera el nombre del profesor del localStorage
-    const nombreUsuario = localStorage.getItem('profesor');
+    const nombreUsuario = localStorage.getItem('profesor'); 
     if (nombreUsuario) {
       this.profesor = nombreUsuario;
     }
   }
 
   generarQR() {
-    const data = `${this.profesor},Matemáticas`; // Contenido del QR
+    const data = {
+      profesor: this.profesor,
+      asignatura: 'Matemáticas',
+    };
+
+    
     const canvas = document.getElementById('qr-code') as HTMLCanvasElement;
 
-    QRCode.toCanvas(canvas, data, { width: 200 }, (error: Error | null) => {
-      if (error) {
-        console.error(error);
-        alert('Error al generar el QR');
-      } else {
-        console.log('QR generado con éxito');
+    
+    QRCode.toCanvas(
+      canvas,
+      JSON.stringify(data), 
+      { width: 200 },
+      (error: Error | null) => {
+        if (error) {
+          console.error('Error al generar el QR:', error);
+          alert('Error al generar el QR');
+        } else {
+          console.log('QR generado con éxito');
+        }
       }
-    });
+    );
   }
 }
