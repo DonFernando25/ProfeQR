@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Generar QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Hola, {{ profesor }}</h2>
+  <p>Asignatura: Matemáticas</p>
+
+  <div class="qr-container">
+    <canvas id="qr-code"></canvas>
+  </div>
+
+  <ion-button expand="block" (click)="generarQR()">Generar QR</ion-button>
+</ion-content>

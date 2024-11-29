@@ -1,0 +1,7 @@
+{
+  "name": "ProfesorQR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
